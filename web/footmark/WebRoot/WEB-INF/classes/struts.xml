@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+	<package name="struts-shop" extends="json-default">
+		<interceptors>
+			<interceptor name="login"
+				class="wjp.interceptor.LoginInterceptor" />
+			<interceptor-stack name="teamwareStack">
+				<interceptor-ref name="login" />
+				<interceptor-ref name="defaultStack" />
+			</interceptor-stack>
+		</interceptors>
+		<default-interceptor-ref name="teamwareStack"/>
+	</package>
+	<package name="application" extends="struts-shop" namespace="/">
+		<!-- 页面控制 -->
+		<action name="index" class="indexAction" method="index">
+			<result name="index">/login.jsp</result>
+		</action>
+		<action name="main" class="indexAction" method="main">
+			<result name="success">/WEB-INF/jsp/main.jsp</result>
+			<result name="index">/login.jsp</result>
+		</action>
+		
+		<action name="welcome" class="pageAction" method="welcome">
+			<result name="success">/WEB-INF/jsp/welcome.jsp</result>
+		</action>
+		<action name="api" class="pageAction" method="api">
+			<result name="success">/WEB-INF/jsp/api_index.jsp</result>
+		</action>
+		<action name="test" class="pageAction" method="test">
+			<result name="success">/WEB-INF/jsp/api_test.jsp</result>
+		</action>
+		
+		<action name="map" class="mapAction" method="view">
+			<result name="success">/WEB-INF/jsp/map.jsp</result>
+		</action>
+		<!-- 用户 -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="success" type="httpheader">/WEB-INF/jsp/api_index.jsp
+			</result>
+			<result name="list">/WEB-INF/jsp/user.jsp</result>
+			<result name="edit">/WEB-INF/jsp/userEdit.jsp</result>
+			<result name="delete" type="redirectAction">user_list</result>
+			<result name="save" type="redirectAction">user_list</result>
+			<result name="login" type="redirectAction">index</result>
+		</action>
+		<!-- 活动 -->
+		<action name="active_*" class="activeAction" method="{1}">
+			<result name="success" type="httpheader">/WEB-INF/jsp/api_index.jsp
+			</result>
+			<result name="list">/WEB-INF/jsp/active.jsp</result>
+			<result name="edit">/WEB-INF/jsp/activeEdit.jsp</result>
+			<result name="delete" type="redirectAction">active_list</result>
+			<result name="save" type="redirectAction">active_list</result>
+		</action>
+		<!-- 群组 -->
+		<action name="group_*" class="groupAction" method="{1}">
+			<result name="success" type="httpheader">/WEB-INF/jsp/api_index.jsp
+			</result>
+			<result name="list">/WEB-INF/jsp/group.jsp</result>
+			<result name="edit">/WEB-INF/jsp/groupEdit.jsp</result>
+			<result name="delete" type="redirectAction">group_list</result>
+			<result name="save" type="redirectAction">group_list</result>
+		</action>
+	</package>
+</struts>    

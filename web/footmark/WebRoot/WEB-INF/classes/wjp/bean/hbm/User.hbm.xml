@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="wjp.bean">
+	<class name="User" table="t_user" >
+		<id name="id" type="java.lang.Integer">
+			<column name="id" />
+			<generator class="native" />
+		</id>
+		<property name="mobilePhone" type="java.lang.String" length="20">
+			<column name="mobilePhone" />
+		</property>
+		<property name="flag" type="java.lang.Integer">
+			<column name="flag" />
+		</property>
+		<property name="uuid" type="java.lang.String" length="50">
+			<column name="uuid" />
+		</property>
+		<property name="password" type="java.lang.String" length="30">
+			<column name="password" />
+		</property>
+		<property name="headPicture" type="java.lang.String">
+			<column name="headPicture" />
+		</property>
+		<property name="nickName" type="java.lang.String" length="30">
+			<column name="nickName" />
+		</property>
+		<property name="realName" type="java.lang.String" length="30">
+			<column name="realName" />
+		</property>
+		<property name="sex" type="java.lang.String" length="10">
+			<column name="sex" />
+		</property>
+		<property name="birthday" type="java.lang.String" length="20">
+			<column name="birthday" />
+		</property>
+		<property name="address" type="java.lang.String" length="50">
+			<column name="address" />
+		</property>
+		<property name="email" type="java.lang.String" length="30">
+			<column name="email" />
+		</property>
+		<property name="lastLoginTime" type="java.sql.Timestamp">
+			<column name="lastLoginTime" length="23" />
+		</property>
+		<property name="registerTime" type="java.sql.Timestamp">
+			<column name="registerTime" length="23" />
+		</property>
+		<property name="token" type="java.lang.String" length="50">
+			<column name="token" />
+		</property>
+		<property name="individualSignature" type="java.lang.String">
+			<column name="individualSignature" />
+		</property>
+		<property name="currentlyActiveId" type="java.lang.Integer">
+			<column name="currentlyActiveId" />
+		</property>
+		<!-- 确定关联的外键列 -->
+		<!--  
+		 <set name="actives" table="active" cascade="all"
+            lazy="false" inverse="true">
+            <key column="userId" />
+            <one-to-many class="Active" />
+        </set>
+        -->
+	</class>
+</hibernate-mapping>
